@@ -1,4 +1,5 @@
 class Solution {
+//     Sliding window problem
     public int takeCharacters(String s, int k) {
         int n=s.length();
         
