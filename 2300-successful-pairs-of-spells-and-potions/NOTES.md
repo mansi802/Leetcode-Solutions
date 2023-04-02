@@ -1,0 +1,1 @@
+As we are getting one sorted array, we can use binary search
