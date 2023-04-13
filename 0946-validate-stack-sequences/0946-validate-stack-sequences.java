@@ -16,6 +16,6 @@ class Solution {
         }
        
         
-        return i==n && j==n && stack.isEmpty();
+        return stack.isEmpty();
     }
 }
