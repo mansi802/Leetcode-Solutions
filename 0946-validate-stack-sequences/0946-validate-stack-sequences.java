@@ -4,20 +4,17 @@ class Solution {
         
         int i=0,j=0;
         Stack<Integer> stack=new Stack<>();
-        while(i<n && j<n){
+        while(i<n){
             
+            stack.push(pushed[i++]);
             while(stack.size()>0 && stack.peek()==popped[j]){
                 stack.pop();
                 j++;
             }
             
-            stack.push(pushed[i++]);
+            
         }
-        
-        while(stack.size()>0 && stack.peek()==popped[j]){
-                stack.pop();
-                j++;
-        } 
+       
         
         return i==n && j==n && stack.isEmpty();
     }
