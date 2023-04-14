@@ -32,7 +32,7 @@ public class Main {
 
 class Solution {
     int findMaxSum(int nums[], int n) {
-        int[] memo=new int[n+1];
+        // int[] memo=new int[n+1];
         
         int prev2=0,prev=0,curr=0;
         
