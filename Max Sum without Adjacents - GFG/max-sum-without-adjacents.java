@@ -34,18 +34,23 @@ class Solution {
     int findMaxSum(int nums[], int n) {
         int[] memo=new int[n+1];
         
+        int prev2=0,prev=0,curr=0;
+        
         
         for(int i=1;i<=n;i++){
-            if(i==1) memo[i]=nums[i-1];
+            if(i==1) curr=nums[i-1];
             else{
-                int left=nums[i-1]+memo[i-2];
-            int right=0+memo[i-1];
+                int left=nums[i-1]+prev2;
+            int right=0+prev;
             
-            memo[i]=Math.max(left,right);
+            curr=Math.max(left,right);
             }
+            
+            prev2=prev;
+            prev=curr;
         }
         
-        return memo[n];
+        return curr;
     }
     
     private int recursion(int[] nums,int i){
