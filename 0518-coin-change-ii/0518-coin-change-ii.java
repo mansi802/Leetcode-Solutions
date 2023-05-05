@@ -4,11 +4,26 @@ class Solution {
     public int change(int amount, int[] coins) {
         int n=coins.length;
         memo=new int[n][amount+1];
-        for(int i=0;i<n;i++)
-            for(int j=0;j<amount+1;j++)
-                memo[i][j]=-1;
+        
+        for(int j=0;j<amount+1;j++){
+            if(j%coins[0]==0) memo[0][j]=1;
+            else memo[0][j]=0;
+        }
+        
+        for(int i=0;i<n;i++) memo[i][0]=1;
+        
+        for(int i=1;i<n;i++){
+            for(int j=1;j<amount+1;j++){
+                int notTake=memo[i-1][j];
+                int take=0;
+                if(coins[i]<=j) take=memo[i][j-coins[i]];
                 
-        return helper(coins,n-1,amount);
+                memo[i][j]=(notTake+take);
+            }
+        }
+                
+        return memo[n-1][amount];
+        // return helper(coins,n-1,amount);
     }
     
     private int helper(int[] coins,int i,int sum){
