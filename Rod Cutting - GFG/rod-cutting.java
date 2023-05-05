@@ -25,10 +25,20 @@ class Solution{
     int[][] memo;
     public int cutRod(int price[], int n) {
         memo=new int[n+1][n+1];
-        for(int i=0;i<n+1;i++){
-            for(int j=0;j<n+1;j++) memo[i][j]=-1;
+        
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<n+1;j++){
+                int notTake=memo[i-1][j];
+                int take=0;
+                if(i<=j) take=price[i-1]+memo[i][j-i];
+                
+                memo[i][j]=Math.max(notTake,take);
+            }
         }
-        return helper(price,n,n);
+        
+        return memo[n][n];
+        
+        // return helper(price,n,n);
     }
     
     private int helper(int[] price,int i,int len){
