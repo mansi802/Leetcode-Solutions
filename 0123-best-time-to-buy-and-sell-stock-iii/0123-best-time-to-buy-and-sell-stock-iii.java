@@ -1,31 +1,19 @@
 class Solution {
     
-    public int maxProfit(int[] prices) {
-        int n=prices.length;
+    public int maxProfit(int[] price) {
+        int n=price.length;
         
-        // int[][][] memo=new int[n+1][2][3];
+        int[][] curr;
         int[][] next=new int[2][3];
-        int[][] curr=new int[2][3];
         
         for(int i=n-1;i>=0;i--){
-            for(int j=0;j<=1;j++){
-                for(int k=2;k>=1;k--){
-                   int profit=0;
-                    if(j==1){
-
-                        int case1=-prices[i]+next[0][k];
-                        int case2=0+next[1][k];
-                        profit=Math.max(case1,case2);
-                    }else{
-
-                        int case3=prices[i]+next[1][k-1];
-                        int case4=0+next[0][k];
-                        profit=Math.max(case3,case4);
-
-                    }
-
-                   curr[j][k]=profit;
-                }
+            curr=new int[2][3];
+            for(int k=2;k>0;k--){
+                
+                
+                curr[1][k]=Math.max(-price[i]+next[0][k],next[1][k]);
+                
+                curr[0][k]=Math.max(price[i]+next[1][k-1],next[0][k]);
             }
             
             next=curr;
