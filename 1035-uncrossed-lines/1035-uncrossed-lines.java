@@ -4,16 +4,21 @@ class Solution {
         int n=nums1.length;
         int m=nums2.length;
         
-        int[][] memo=new int[n+1][m+1];
+        // int[][] memo=new int[n+1][m+1];
+        int[] prev=new int[m+1];
+        
         
         for(int i=1;i<n+1;i++){
+            int[] curr=new int[m+1];
             for(int j=1;j<m+1;j++){
-                if(nums1[i-1]==nums2[j-1]) memo[i][j]=1+memo[i-1][j-1];
-                else memo[i][j]=Math.max(memo[i-1][j],memo[i][j-1]);
+                if(nums1[i-1]==nums2[j-1]) curr[j]=1+prev[j-1];
+                else curr[j]=Math.max(prev[j],curr[j-1]);
             }
+            
+            prev=curr;
         }
         
-        return memo[n][m];
+        return prev[m];
         // return helper(nums1,nums2,0,0);
     }
     
